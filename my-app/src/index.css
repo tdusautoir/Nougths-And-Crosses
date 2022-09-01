@@ -1,10 +1,39 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
+    font: 18px "Century Gothic", Futura, sans-serif;
     margin: 20px;
   }
   
+  h1{
+    text-align: center;
+  }
+
+  p{
+    margin: 0;
+  }
+
   ol, ul {
-    padding-left: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .game-info {
+    margin-left: 20px;
+  }
+
+  .board-row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: fit-content;
   }
   
   .board-row:after {
@@ -13,43 +42,81 @@ body {
     display: table;
   }
   
-  .status {
-    margin-bottom: 10px;
-  }
-  
   .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
+    height: 60px;
+    width: 60px;
+    margin: 0;
     padding: 0;
-    text-align: center;
-    width: 34px;
+    border: 2px solid #ffffff;
   }
 
   .square.active {
-    background-color: gray;
+    background-color: lightgray;
   }
-  
+
   .square:focus {
     outline: none;
   }
+
+  .history{
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #efefef;
+    border-radius: 5px;
+    width: 180px;
+  }
+
+  .history p{
+    color: gray;
+    margin-bottom: 10px;
+  }
+
+  .history button.step{
+    font-family: "Century Gothic", Futura, sans-serif;
+    width: -webkit-fill-available;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .desc-board  {
+    display: none;
+    margin-bottom: 10px;
+    position: absolute;
+  }
+
+  li:hover .desc-board{
+    display: block;
+  }
+
+  li:last-child button.step{
+    margin: 0;
+  }
+
+  li:last-child .desc-board{
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
   
   .kbd-navigation .square:focus {
     background: #ddd;
   }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
+
+
+  @media screen and (max-width: 500px) {
+    .game {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .game-info {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    
+    .status{
+      text-align: center;
+    }
   }
-  
-  .game-info {
-    margin-left: 20px;
-  }
-  

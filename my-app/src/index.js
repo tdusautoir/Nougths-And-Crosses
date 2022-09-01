@@ -47,13 +47,9 @@ class Board extends React.Component {
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
@@ -113,7 +109,9 @@ class Game extends React.Component {
       const desc = move ? "Back to step n°" + move : "Back to the start";
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button class="step" onClick={() => this.jumpTo(move)}>
+            {desc}
+          </button>
           <Board className="desc-board" squares={history[move].squares} />
         </li>
       );
@@ -129,16 +127,22 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+      <div className="container">
+        <h1>Tic Tac Toe</h1>
+        <div className="game">
+          <div className="game-board">
+            <Board
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
+          </div>
+          <div className="game-info">
+            <div className="status">{status}</div>
+            <div className="history">
+              <p>History :</p>
+              <ol>{moves}</ol>
+            </div>
+          </div>
         </div>
       </div>
     );
