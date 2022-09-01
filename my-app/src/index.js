@@ -25,20 +25,24 @@ function Square(props) {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return (
-      <Square
-        id={i}
-        value={this.props.squares[i]}
-        onClick={() => {
-          this.props.onClick(i);
-        }}
-      />
-    );
+    if (this.props.onClick) {
+      return (
+        <Square
+          id={i}
+          value={this.props.squares[i]}
+          onClick={() => {
+            this.props.onClick(i);
+          }}
+        />
+      );
+    } else {
+      return <Square id={i} value={this.props.squares[i]} />;
+    }
   }
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -110,6 +114,7 @@ class Game extends React.Component {
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <Board className="desc-board" squares={history[move].squares} />
         </li>
       );
     });
@@ -160,7 +165,6 @@ function calculateWinner(squares) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       WinnerSquare = [a, b, c];
-      console.log(WinnerSquare);
       return squares[a]; //WINNER
     }
   }
